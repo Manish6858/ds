@@ -30,9 +30,6 @@ var _react2 = _interopRequireDefault(_react);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _jsxFileName = "/Users/divyendusingh/Documents/projects/zoid/ds/frontend/components/Layout.js";
-
-
 var _class = function (_Component) {
   (0, _inherits3.default)(_class, _Component);
 
@@ -45,12 +42,7 @@ var _class = function (_Component) {
   (0, _createClass3.default)(_class, [{
     key: "render",
     value: function render() {
-      return _react2.default.createElement("div", {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 5
-        }
-      }, this.props.children);
+      return _react2.default.createElement("div", null, this.props.children);
     }
   }]);
 
@@ -58,4 +50,3 @@ var _class = function (_Component) {
 }(_react.Component);
 
 exports.default = _class;
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbImNvbXBvbmVudHMvTGF5b3V0LmpzIl0sIm5hbWVzIjpbIlJlYWN0IiwiQ29tcG9uZW50IiwicHJvcHMiLCJjaGlsZHJlbiJdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFBQSxBQUFPLEFBQVM7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7OzZCQUdMLEFBQ1A7NkJBQU8sY0FBQTs7b0JBQUE7c0JBQUEsQUFBTTtBQUFOO0FBQUEsT0FBQSxPQUFNLEFBQUssTUFBbEIsQUFBTyxBQUFpQixBQUN6Qjs7Ozs7QUFIMEIsQSIsImZpbGUiOiJMYXlvdXQuanMiLCJzb3VyY2VSb290IjoiL1VzZXJzL2RpdnllbmR1c2luZ2gvRG9jdW1lbnRzL3Byb2plY3RzL3pvaWQvZHMvZnJvbnRlbmQifQ==

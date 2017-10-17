@@ -1,3 +1,5 @@
 build.zip
 node_modules/
 .graphcoolrc
+frontend/.next/
+.vscode

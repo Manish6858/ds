@@ -2,6 +2,7 @@
   "dependencies": {
     "next": "^4.1.0",
     "react": "^16.0.0",
+    "react-apollo": "^1.4.16",
     "react-dom": "^16.0.0"
   },
   "scripts": {
@@ -12,8 +13,8 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@storybook/react": "^3.2.12",
     "@storybook/addon-actions": "^3.2.12",
-    "@storybook/addon-links": "^3.2.12"
+    "@storybook/addon-links": "^3.2.12",
+    "@storybook/react": "^3.2.12"
   }
 }

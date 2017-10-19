@@ -11,7 +11,7 @@ class Cards extends Component {
     return (
       <div style={styles.CardsLayoutWrapper}>
         {this.props.data.allCards.map(card => (
-          <div style={styles.CardsChildWrapper}>
+          <div key={card.id} style={styles.CardsChildWrapper}>
             <Card title={card.title} link={card.link} />
           </div>
         ))}
@@ -39,9 +39,6 @@ const allCards = gql`
       id
       title
       link
-    }
-    _allCardsMeta {
-      count
     }
   }
 `;

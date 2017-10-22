@@ -3,11 +3,10 @@ import React, { Component } from "react";
 export default class extends Component {
   render() {
     return (
-      <div
-        onClick={() => window.open(this.props.link, "_target")}
-        style={styles.CardWrapper}
-      >
-        {this.props.title}
+      <div style={styles.CardWrapper}>
+        <a href={this.props.link} target="_blank" style={styles.LinkWrapper}>
+          {this.props.title}
+        </a>
       </div>
     );
   }
@@ -15,12 +14,15 @@ export default class extends Component {
 
 const styles = {
   CardWrapper: {
+    border: "1px dashed #999",
+    width: 200
+  },
+  LinkWrapper: {
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
-    border: "1px dashed #999",
-    width: 200,
+    textDecoration: "none",
     padding: 20,
-    cursor: "pointer"
+    color: "#4087c4"
   }
 };

@@ -3,13 +3,6 @@
 
 types: ./types.graphql
 
-functions:
-  hello:
-    handler:
-      code: src/hello.js
-    type: resolver
-    schema: src/hello.graphql
-
 # https://docs-next.graph.cool/reference/auth/authorization/overview-iegoo0heez
 permissions:
 - operation: "*"

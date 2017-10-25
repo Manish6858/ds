@@ -6,7 +6,7 @@ type User @model {
 
 type Card @model {
   id: ID! @isUnique
-  key: String! @migrationValue(value: "fake")
+  key: String!
   title: String!
   link: String!
 }

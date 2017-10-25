@@ -6,7 +6,7 @@ type User @model {
 
 type Card @model {
   id: ID! @isUnique
-  key: String!
+  key: String! @isUnique
   title: String!
   link: String!
 }

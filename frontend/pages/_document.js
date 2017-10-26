@@ -11,6 +11,11 @@ export default class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <style jsx>{`
+            :global(body) {
+              font-family: monospace;
+            }
+          `}</style>
         </body>
       </html>
     );

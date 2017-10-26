@@ -1,5 +1,6 @@
 module.exports = {
   exportPathMap: async () => {
+    // TODO: Unify lokka interface across project
     const Lokka = require("lokka").Lokka;
     const Transport = require("lokka-transport-http").Transport;
 
@@ -7,6 +8,7 @@ module.exports = {
       transport: new Transport("https://api.graph.cool/simple/v1/ds")
     });
 
+    // TODO: Handle error condition
     const cards = await client
       .query(
         `

@@ -1,4 +1,4 @@
 [build]
   base    = "frontend"
   publish = "frontend/out"
-  command = "npm run build-static"
+  command = "npm run build"

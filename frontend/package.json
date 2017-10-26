@@ -9,8 +9,7 @@
   },
   "scripts": {
     "dev": "node server.js",
-    "build": "next build",
-    "build-static": "next build && next export",
+    "build": "next build && next export",
     "start": "NODE_ENV=production node server.js",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"

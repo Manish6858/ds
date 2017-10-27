@@ -11,8 +11,8 @@ class Cards extends Component {
     return (
       <div style={styles.CardsLayoutWrapper}>
         {this.props.data.allCards.map(card => (
-          <div key={card.id} style={styles.CardsChildWrapper}>
-            <Card title={card.title} link={card.link} />
+          <div key={card.key} style={styles.CardsChildWrapper}>
+            <Card card={card} />
           </div>
         ))}
       </div>
@@ -37,6 +37,7 @@ const allCards = gql`
   query allCards {
     allCards(orderBy: title_ASC) {
       id
+      key
       title
       link
     }

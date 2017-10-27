@@ -2,10 +2,11 @@ import React, { Component } from "react";
 
 export default class extends Component {
   render() {
+    const { title, link, key } = this.props.card;
     return (
       <div style={styles.CardWrapper}>
-        <a href={this.props.link} target="_blank" style={styles.LinkWrapper}>
-          {this.props.title}
+        <a href={`/profile/${key}`} target="_blank" style={styles.LinkWrapper}>
+          {title}
         </a>
       </div>
     );

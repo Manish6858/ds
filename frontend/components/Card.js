@@ -5,7 +5,7 @@ export default class extends Component {
     const { title, link, key } = this.props.card;
     return (
       <div style={styles.CardWrapper}>
-        <a href={`/profile/${key}`} target="_blank" style={styles.LinkWrapper}>
+        <a href={`/profile/${key}`} target="_self" style={styles.LinkWrapper}>
           {title}
         </a>
       </div>

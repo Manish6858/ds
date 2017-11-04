@@ -1,32 +1,27 @@
 module.exports = {
   exportPathMap: async () => {
-    // TODO: Unify lokka interface across project
-    const Lokka = require("lokka").Lokka;
-    const Transport = require("lokka-transport-http").Transport;
-
-    const client = new Lokka({
-      transport: new Transport("https://api.graph.cool/simple/v1/ds")
-    });
+    const { request } = require("graphql-request");
+    // TODO: Unify graphql-request interface across project
 
     // TODO: Handle error condition
-    const cards = await client
-      .query(
-        `
-          query allCards {
-            allCards(orderBy: title_ASC) {
-              id
-              key
-              title
-              link
-            }
-            _allCardsMeta {
-              count
-            }
-          }`
-      )
-      .then(result => {
-        return result.allCards.map(card => card);
-      });
+    const query = `
+    query allCards {
+      allCards(orderBy: title_ASC) {
+        id
+        key
+        title
+        link
+      }
+      _allCardsMeta {
+        count
+      }
+    }`;
+    const cards = await request(
+      "https://api.graph.cool/simple/v1/ds",
+      query
+    ).then(result => {
+      return result.allCards.map(card => card);
+    });
 
     const pages = cards.reduce((pages, card) => {
       const page = {

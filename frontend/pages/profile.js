@@ -2,23 +2,18 @@ import React, { Component } from "react";
 import Head from "next/head";
 
 import Layout from "../components/Layout";
+import { GraphQLClient } from "graphql-request";
 
 export default class extends Component {
   static async getInitialProps({ query }) {
     // Card is not available on query means this is not a static export, see next.config.js
     // This is rendering on server side, we only have ID, need to fetch the card
     if (!query.card) {
-      // TODO: Unify lokka interface across project
-      const Lokka = require("lokka").Lokka;
-      const Transport = require("lokka-transport-http").Transport;
-
-      const client = new Lokka({
-        transport: new Transport("https://api.graph.cool/simple/v1/ds")
-      });
+      const client = new GraphQLClient("https://api.graph.cool/simple/v1/ds");
 
       // TODO: Handle error condition
       query.card = await client
-        .query(
+        .request(
           `
             query allCards {
               allCards(orderBy: title_ASC, filter: { key: "${query.profile}" }) {

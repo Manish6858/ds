@@ -1,7 +1,6 @@
 {
   "dependencies": {
-    "lokka": "^1.7.0",
-    "lokka-transport-http": "^1.6.1",
+    "graphql-request": "^1.4.0",
     "next": "^4.1.0",
     "react": "^16.0.0",
     "react-apollo": "^1.4.16",

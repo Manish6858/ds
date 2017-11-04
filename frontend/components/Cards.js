@@ -9,29 +9,28 @@ class Cards extends Component {
       return "Loading...";
     }
     return (
-      <div style={styles.CardsLayoutWrapper}>
+      <div className="CardsLayoutWrapper">
         {this.props.data.allCards.map(card => (
-          <div key={card.key} style={styles.CardsChildWrapper}>
+          <div key={card.key} className="CardsChildWrapper">
             <Card card={card} />
           </div>
         ))}
+        <style jsx>{`
+          .CardsLayoutWrapper {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            width: 60%;
+            margin: 0 auto;
+          }
+          .CardsChildWrapper {
+            margin: 10px;
+          }
+        `}</style>
       </div>
     );
   }
 }
-
-const styles = {
-  CardsLayoutWrapper: {
-    display: "flex",
-    justifyContent: "center",
-    flexWrap: "wrap",
-    width: "60%",
-    margin: "0 auto"
-  },
-  CardsChildWrapper: {
-    margin: 10
-  }
-};
 
 const allCards = gql`
   query allCards {

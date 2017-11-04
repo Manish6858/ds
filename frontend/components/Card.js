@@ -4,26 +4,25 @@ export default class extends Component {
   render() {
     const { title, link, key } = this.props.card;
     return (
-      <div style={styles.CardWrapper}>
-        <a href={`/profile/${key}`} target="_self" style={styles.LinkWrapper}>
+      <div className="CardWrapper">
+        <a href={`/profile/${key}`} target="_self" className="LinkWrapper">
           {title}
         </a>
+        <style jsx>{`
+          .CardWrapper {
+            border: 1px dashed #999;
+            width: 200px;
+          }
+          .LinkWrapper {
+            display: flex;
+            justify-content: center;
+            alignitems: center;
+            text-decoration: none;
+            padding: 20px;
+            color: #4087c4;
+          }
+        `}</style>
       </div>
     );
   }
 }
-
-const styles = {
-  CardWrapper: {
-    border: "1px dashed #999",
-    width: 200
-  },
-  LinkWrapper: {
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    textDecoration: "none",
-    padding: 20,
-    color: "#4087c4"
-  }
-};

@@ -10,7 +10,7 @@ export default class extends Component {
         </a>
         <style jsx>{`
           .CardWrapper {
-            border: 1px dashed #999;
+            border: 1px dashed #545454;
             width: 200px;
           }
           .LinkWrapper {
@@ -19,7 +19,8 @@ export default class extends Component {
             alignitems: center;
             text-decoration: none;
             padding: 20px;
-            color: #4087c4;
+            font-size: 16px;
+            color: #a6925a;
           }
         `}</style>
       </div>

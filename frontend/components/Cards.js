@@ -22,6 +22,7 @@ class Cards extends Component {
             flex-wrap: wrap;
             width: 60%;
             margin: 0 auto;
+            padding: 40px;
           }
           .CardsChildWrapper {
             margin: 10px;

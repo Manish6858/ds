@@ -49,14 +49,16 @@ export default class extends Component {
             <title>{this.props.card.title}</title>
           </Head>
           Redirecting to {this.props.card.link}
-          <style jsx>{`
-            .profile-page {
-              display: flex;
-              align-items: center;
-              justify-content: center;
-              height: 100vh;
-            }
-          `}</style>
+          <style jsx>
+            {`
+              .profile-page {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                height: 100vh;
+              }
+            `}
+          </style>
         </div>
       </Layout>
     );

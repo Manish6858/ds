@@ -21,6 +21,11 @@ export default class extends Component {
             padding: 20px;
             font-size: 16px;
             color: #a6925a;
+            transition: 120ms ease-in background;
+          }
+          .LinkWrapper:hover {
+            background: #222;
+            color: #e5bf55;
           }
         `}</style>
       </div>

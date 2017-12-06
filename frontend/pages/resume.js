@@ -9,7 +9,7 @@ class Resume extends Component {
       <div
         dangerouslySetInnerHTML={{
           __html: `
-    <!doctype html>
+					<!doctype html>
 <html>
 	<head>
 
@@ -249,7 +249,7 @@ a {
 	      </div>
 	      <div><a href=''></a></div>
 	      <ul class='highlights'>
-	        <li>Mobile lead in second largest media startup with a very small engineering team (~6 members)</li>
+	        <li>Mobile lead in second largest media startup with a small engineering team (~6 members)</li>
 	        <li>Solved media industry problems by creating a revenue share platform using custom analytics, enhancing editorial workflow and personalizing user feed</li>
 	        <li>End to end product development, delivery, and support using agile methodologies</li>
 	        <li>Key Skills - React, Node, DevOps, Android, php, DFP, HLS, SEO ; Domain - Media</li>
@@ -416,7 +416,7 @@ a {
 	</div>
 
 	</body>
-</html>      
+</html>
     `
         }}
       />

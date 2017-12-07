@@ -20,7 +20,7 @@ class Cards extends Component {
             display: flex;
             justify-content: center;
             flex-wrap: wrap;
-            width: 60%;
+            max-width: 60%;
             margin: 0 auto;
             padding: 40px;
           }

@@ -3,7 +3,7 @@ import React, { Component } from "react";
 export default class extends Component {
   render() {
     return (
-      <div>
+      <div className="aboutWrapper">
         <div className="headeLine">Divyendu Singh</div>
         <div className="aboutMe">
           A young computer scientist from the top of India, the beautiful place
@@ -18,25 +18,21 @@ export default class extends Component {
             src="https://pbs.twimg.com/profile_images/843476376971755520/yFWFjc8W_400x400.jpg"
           />
         </div>
+
         <style jsx>{`
           .headeLine {
-            display: flex;
-            justify-content: center;
-            alignitems: center;
+            text-align: center;
             font-family: "Open Sans";
             font-size: 72px;
             font-weight: 100;
             color: #aaa;
-            padding-top: 150px;
+            padding-top: 10%;
           }
           .aboutMe {
-            display: flex;
             text-align: center;
-            justify-content: center;
-            alignitems: center;
             font-family: "Open Sans";
             font-size: 18px;
-            width: 900px;
+            max-width: 900px;
             font-weight: 100;
             color: #999;
             margin: auto;

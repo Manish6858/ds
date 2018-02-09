@@ -1,5 +1,5 @@
-mutation CreateUser {
-  createUser(
+mutation CreateCards {
+  user: createUser(
     data: {
       slug: "divyenduz"
       name: "Divyendu Singh"
@@ -9,9 +9,7 @@ mutation CreateUser {
   ) {
     id
   }
-}
 
-mutation CreateCards {
   graphql: createCard(
     data: {
       type: LINK

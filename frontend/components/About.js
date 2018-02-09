@@ -1,22 +1,23 @@
 import React, { Component } from "react";
+import { gql, graphql } from "react-apollo";
 
-export default class extends Component {
+class About extends Component {
   render() {
+    const { data } = this.props;
+    if (data.error) {
+      console.log(data.error);
+      return null;
+    }
+    if (data.loading) {
+      return "Loading...";
+    }
+
     return (
       <div className="aboutWrapper">
-        <div className="headeLine">Divyendu Singh</div>
-        <div className="aboutMe">
-          A young computer scientist from the top of India, the beautiful place
-          called Jammu and Kashmir. I love making stuff, things that change the
-          way the world operates, things that affect the space-time of the
-          universe, things that have an impact.
-        </div>
+        <div className="headeLine">{data.user.name}</div>
+        <div className="aboutMe">{data.user.intro}</div>
         <div className="imageWrapper">
-          <img
-            className="profilePic"
-            alt=""
-            src="https://pbs.twimg.com/profile_images/843476376971755520/yFWFjc8W_400x400.jpg"
-          />
+          <img className="profilePic" alt="" src={data.user.image} />
         </div>
 
         <style jsx>{`
@@ -56,3 +57,24 @@ export default class extends Component {
     );
   }
 }
+
+const user = gql`
+  query Cards {
+    user(where: { slug: "divyenduz" }) {
+      id
+      slug
+      name
+      intro
+      image
+    }
+  }
+`;
+
+export default graphql(user, {
+  options: {
+    variables: {}
+  },
+  props: ({ data }) => ({
+    data
+  })
+})(About);

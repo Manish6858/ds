@@ -5,27 +5,24 @@ module.exports = {
 
     // TODO: Handle error condition
     const query = `
-    query allCards {
-      allCards(orderBy: title_ASC) {
+    query cards {
+      cards(orderBy: title_ASC) {
         id
-        key
+        slug
         title
         link
-      }
-      _allCardsMeta {
-        count
+        html
       }
     }`;
-    const cards = await request(
-      "https://api.graph.cool/simple/v1/ds",
-      query
-    ).then(result => {
-      return result.allCards.map(card => card);
-    });
+    const cards = await request("https://api.divyendusingh.com", query).then(
+      result => {
+        return result.cards.map(card => card);
+      }
+    );
 
     const pages = cards.reduce((pages, card) => {
       const page = {
-        [`/profile/${card.key}`]: {
+        [`/profile/${card.slug}`]: {
           page: "/profile",
           query: { card }
         }

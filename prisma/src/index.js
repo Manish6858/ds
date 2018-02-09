@@ -10,8 +10,8 @@ const engine = new Engine({
       level: "DEBUG"
     }
   },
-  graphqlPort: process.env.PORT || 8003,
-  endpoint: "/graphql",
+  graphqlPort: 4000,
+  endpoint: "/",
   dumpTraffic: true
 });
 

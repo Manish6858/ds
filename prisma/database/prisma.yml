@@ -1,0 +1,13 @@
+# the name for the service (will be part of the service's HTTP endpoint)
+service: ds
+
+stage: dev
+
+secret: very-secret-going-to-version-control-but-i-know-it-and-dont-care
+
+datamodel: datamodel.graphql
+
+seed:
+  import: seed.graphql
+
+cluster: local

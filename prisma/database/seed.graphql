@@ -1,0 +1,103 @@
+mutation CreateUser {
+  createUser(
+    data: {
+      slug: "divyenduz"
+      name: "Divyendu Singh"
+      intro: "A young computer scientist from the top of India, the beautiful place called Jammu and Kashmir. I love making stuff, things that change the way the world operates, things that affect the space-time of the universe, things that have an impact."
+      image: "https://pbs.twimg.com/profile_images/843476376971755520/yFWFjc8W_400x400.jpg"
+    }
+  ) {
+    id
+  }
+}
+
+mutation CreateCards {
+  graphql: createCard(
+    data: {
+      type: LINK
+      slug: "graphql-video-course"
+      title: "GraphQL [Video]"
+      link: "https://www.producthunt.com/posts/learning-graphql-with-react-and-relay-video"
+      html: ""
+    }
+  ) {
+    id
+  }
+  resume: createCard(
+    data: {
+      type: LINK
+      slug: "resume"
+      title: "Resume"
+      link: "https://divyendusingh.com/resume"
+      html: ""
+    }
+  ) {
+    id
+  }
+  twitter: createCard(
+    data: {
+      type: LINK
+      slug: "twitter"
+      title: "Twitter"
+      link: "https://twitter.com/divyenduz"
+      html: ""
+    }
+  ) {
+    id
+  }
+  duolingo: createCard(
+    data: {
+      type: LINK
+      slug: "duolingo"
+      title: "Duolingo"
+      link: "https://www.duolingo.com/divyenduz"
+      html: ""
+    }
+  ) {
+    id
+  }
+  blog: createCard(
+    data: {
+      type: LINK
+      slug: "blog"
+      title: "Blog"
+      link: "https://divu.in/"
+      html: ""
+    }
+  ) {
+    id
+  }
+  goodreads: createCard(
+    data: {
+      type: LINK
+      slug: "goodreads"
+      title: "Goodreads"
+      link: "https://www.goodreads.com/user/show/56447534-divyendu-singh"
+      html: ""
+    }
+  ) {
+    id
+  }
+  strava: createCard(
+    data: {
+      type: LINK
+      slug: "strava"
+      title: "Strava"
+      link: "https://www.strava.com/athletes/6860432"
+      html: ""
+    }
+  ) {
+    id
+  }
+  github: createCard(
+    data: {
+      type: LINK
+      slug: "github"
+      title: "Github"
+      link: "https://github.com/divyenduz"
+      html: ""
+    }
+  ) {
+    id
+  }
+}

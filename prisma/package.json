@@ -1,0 +1,20 @@
+{
+  "name": "prisma",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "npm-run-all --parallel start playground",
+    "start-dev": "nodemon src/index.js",
+    "playground": "graphql playground",
+    "prisma": "prisma"
+  },
+  "dependencies": {
+    "graphql-yoga": "1.2.4",
+    "nodemon": "^1.14.12",
+    "prisma-binding": "1.5.7"
+  },
+  "devDependencies": {
+    "graphql-cli": "2.13.1",
+    "npm-run-all": "4.1.2",
+    "prisma": "1.1.3"
+  }
+}

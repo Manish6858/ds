@@ -1,0 +1,26 @@
+# import Card from "./generated/prisma.graphql"
+# import User from "./generated/prisma.graphql"
+
+type Query {
+  cards(
+    where: CardWhereInput
+    orderBy: CardOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Card!]!
+  user(where: UserWhereUniqueInput!): User
+}
+
+type Mutation {
+  createCard(data: CardCreateInput!): Card!
+  updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card
+
+  createUser(data: UserCreateInput!): User!
+  updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
+
+  deleteCard(where: CardWhereUniqueInput!): Card
+  deleteUser(where: UserWhereUniqueInput!): User
+}

@@ -1,0 +1,22 @@
+type Card {
+  id: ID! @unique
+  type: CardType!
+  slug: String! @unique
+  title: String!
+  link: String
+  html: String
+}
+
+type User {
+  id: ID! @unique
+  slug: String @unique
+  name: String!
+  intro: String!
+  image: String
+}
+
+enum CardType {
+  LINK
+  HTML
+  LINK_WITH_HTML
+}

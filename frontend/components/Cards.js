@@ -5,13 +5,17 @@ import Card from "./Card";
 
 class Cards extends Component {
   render() {
+    if (this.props.data.error) {
+      console.log(this.props.data.error);
+      return null;
+    }
     if (this.props.data.loading) {
       return "Loading...";
     }
     return (
       <div className="CardsLayoutWrapper">
-        {this.props.data.allCards.map(card => (
-          <div key={card.key} className="CardsChildWrapper">
+        {this.props.data.cards.map(card => (
+          <div key={card.slug} className="CardsChildWrapper">
             <Card card={card} />
           </div>
         ))}
@@ -33,18 +37,19 @@ class Cards extends Component {
   }
 }
 
-const allCards = gql`
-  query allCards {
-    allCards(orderBy: title_ASC) {
+const cards = gql`
+  query Cards {
+    cards(orderBy: title_ASC) {
       id
-      key
+      slug
       title
       link
+      html
     }
   }
 `;
 
-export default graphql(allCards, {
+export default graphql(cards, {
   options: {
     variables: {}
   },

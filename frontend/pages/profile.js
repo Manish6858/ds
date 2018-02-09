@@ -9,26 +9,24 @@ export default class extends Component {
     // Card is not available on query means this is not a static export, see next.config.js
     // This is rendering on server side, we only have ID, need to fetch the card
     if (!query.card) {
-      const client = new GraphQLClient("https://api.graph.cool/simple/v1/ds");
-
+      const client = new GraphQLClient("https://api.divyendusingh.com"); // TODO: make it come from configuration
       // TODO: Handle error condition
       query.card = await client
         .request(
           `
-            query allCards {
-              allCards(orderBy: title_ASC, filter: { key: "${query.profile}" }) {
+            query Cards {
+              cards(orderBy: title_ASC, where: { slug: "${query.profile}" }) {
                 id
-                key
+                slug
                 title
                 link
+                html
               }
-              _allCardsMeta {
-                count
-              }
-            }`
+            }
+          `
         )
         .then(result => {
-          return result.allCards[0];
+          return result.cards[0];
         });
     }
     return { card: query.card };

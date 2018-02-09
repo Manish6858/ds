@@ -2,16 +2,17 @@ import React, { Component } from "react";
 
 export default class extends Component {
   render() {
-    const { title, link, key } = this.props.card;
+    const { slug, title, link, html } = this.props.card;
     return (
       <div className="CardWrapper">
-        <a href={`/profile/${key}`} target="_self" className="LinkWrapper">
+        <a href={`/profile/${slug}`} target="_self" className="LinkWrapper">
           {title}
         </a>
         <style jsx>{`
           .CardWrapper {
             border: 1px dashed #545454;
-            width: 200px;
+            min-width: 320px;
+            max-width: 400px;
           }
           .LinkWrapper {
             display: flex;

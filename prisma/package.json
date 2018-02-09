@@ -8,6 +8,8 @@
     "prisma": "prisma"
   },
   "dependencies": {
+    "apollo-engine": "^0.8.9",
+    "compression": "^1.7.1",
     "graphql-yoga": "1.2.4",
     "nodemon": "^1.14.12",
     "prisma-binding": "1.5.7"

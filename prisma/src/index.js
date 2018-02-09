@@ -1,5 +1,21 @@
 const { GraphQLServer } = require("graphql-yoga");
 const { Prisma } = require("prisma-binding");
+const { Engine } = require("apollo-engine");
+const compression = require("compression");
+
+const engine = new Engine({
+  engineConfig: {
+    apiKey: "service:ds-self:UIbWZlrO1TxFloGPmjyFvw",
+    logging: {
+      level: "DEBUG"
+    }
+  },
+  graphqlPort: process.env.PORT || 8003,
+  endpoint: "/graphql",
+  dumpTraffic: true
+});
+
+engine.start();
 
 const resolvers = {
   Query: {
@@ -98,4 +114,13 @@ const server = new GraphQLServer({
   })
 });
 
-server.start(() => console.log("Server is running on http://localhost:4000"));
+server.express.use(compression());
+server.express.use(engine.expressMiddleware());
+
+server.start(
+  {
+    tracing: true,
+    cacheControl: true
+  },
+  () => console.log("Server is running on http://localhost:4000")
+);

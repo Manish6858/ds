@@ -98,4 +98,24 @@ mutation CreateCards {
   ) {
     id
   }
+  newsletter: createCard(
+    data: {
+      link: "https://upscri.be/bad097/"
+      title: "Newsletter"
+      slug: "newsletter"
+      type: LINK
+    }
+  ) {
+    id
+  }
+  coffee: createCard(
+    data: {
+      link: "https://www.buymeacoffee.com/gtVKPh9"
+      title: "Buy me a coffee!"
+      slug: "buy-me-a-coffee"
+      type: LINK
+    }
+  ) {
+    id
+  }
 }

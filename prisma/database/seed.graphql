@@ -118,4 +118,14 @@ mutation CreateCards {
   ) {
     id
   }
+  hire: createCard(
+    data: {
+      link: "mailto:mail@divyendusingh.com"
+      title: "Hire Me"
+      slug: "hire"
+      type: LINK
+    }
+  ) {
+    id
+  }
 }

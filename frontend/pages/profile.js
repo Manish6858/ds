@@ -14,7 +14,7 @@ export default class extends Component {
       query.card = await client
         .request(
           `
-            query Cards {
+            query AllCardsForProfile {
               cards(orderBy: title_ASC, where: { slug: "${query.profile}" }) {
                 id
                 slug

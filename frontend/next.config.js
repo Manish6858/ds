@@ -5,7 +5,7 @@ module.exports = {
 
     // TODO: Handle error condition
     const query = `
-    query cards {
+    query AllCardsForBuild {
       cards(orderBy: title_ASC) {
         id
         slug

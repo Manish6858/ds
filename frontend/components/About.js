@@ -59,7 +59,7 @@ class About extends Component {
 }
 
 const user = gql`
-  query Cards {
+  query GetUserForHome {
     user(where: { slug: "divyenduz" }) {
       id
       slug

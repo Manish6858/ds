@@ -38,7 +38,7 @@ class Cards extends Component {
 }
 
 const cards = gql`
-  query Cards {
+  query AllCardsForHome {
     cards(orderBy: title_ASC) {
       id
       slug

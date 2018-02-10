@@ -36,7 +36,7 @@ export default class extends Component {
     // The delay is intentional to show the redirect message
     setTimeout(() => {
       window.location.href = this.props.card.link;
-    }, 100);
+    }, 10);
   }
 
   render() {

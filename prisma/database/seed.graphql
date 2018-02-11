@@ -3,7 +3,7 @@ mutation CreateCards {
     data: {
       slug: "divyenduz"
       name: "Divyendu Singh"
-      intro: "A young computer scientist from the top of India, the beautiful place called Jammu and Kashmir. I love making stuff, things that change the way the world operates, things that affect the space-time of the universe, things that have an impact."
+      intro: "A young computer scientist from a beautiful place called Jammu and Kashmir in India. I love making things that have an impact."
       image: "https://pbs.twimg.com/profile_images/843476376971755520/yFWFjc8W_400x400.jpg"
     }
   ) {

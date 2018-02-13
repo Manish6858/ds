@@ -3,19 +3,21 @@ const { Prisma } = require("prisma-binding");
 const { Engine } = require("apollo-engine");
 const compression = require("compression");
 
-const engine = new Engine({
-  engineConfig: {
-    apiKey: "service:ds-self:UIbWZlrO1TxFloGPmjyFvw",
-    logging: {
-      level: "DEBUG"
-    }
-  },
-  graphqlPort: 4000,
-  endpoint: "/",
-  dumpTraffic: true
-});
+if (process.env.NODE_ENV === "production") {
+  const engine = new Engine({
+    engineConfig: {
+      apiKey: "service:ds-self:UIbWZlrO1TxFloGPmjyFvw",
+      logging: {
+        level: "DEBUG"
+      }
+    },
+    graphqlPort: 4000,
+    endpoint: "/",
+    dumpTraffic: true
+  });
 
-engine.start();
+  engine.start();
+}
 
 const resolvers = {
   Query: {
@@ -114,13 +116,15 @@ const server = new GraphQLServer({
   })
 });
 
-server.express.use(compression());
-server.express.use(engine.expressMiddleware());
+if (process.env.NODE_ENV === "production") {
+  server.express.use(compression());
+  server.express.use(engine.expressMiddleware());
+}
 
 server.start(
   {
-    tracing: true,
-    cacheControl: true
+    tracing: process.env.NODE_ENV === "production" ? true : false,
+    cacheControl: process.env.NODE_ENV === "production" ? true : false
   },
   () => console.log("Server is running on http://localhost:4000")
 );

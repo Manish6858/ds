@@ -1,15 +1,53 @@
 import React, { Component } from "react";
 
+import Button from "./Button";
+
 export default class extends Component {
   render() {
-    const { slug, title, link, html } = this.props.card;
+    const { card, editing, onClick, deleteCard } = this.props;
+    const { id, slug, title, link, html } = card;
     return (
       <div className="CardWrapper">
-        <a href={`/profile/${slug}`} target="_self" className="LinkWrapper">
-          {title}
-        </a>
+        {!editing && (
+          <a href={`/profile/${slug}`} target="_self" className="LinkWrapper">
+            {title}
+          </a>
+        )}
+        {editing && (
+          <a
+            href="#"
+            onClick={() => {
+              onClick(card);
+            }}
+            target="_self"
+            className="LinkWrapper"
+          >
+            {title}
+          </a>
+        )}
+        {editing && (
+          <Button
+            title="x"
+            style={{
+              position: "absolute",
+              top: 0,
+              right: 0,
+              background: "none",
+              border: "none",
+              color: "white",
+              fontSize: 20
+            }}
+            onClick={() => {
+              const r = confirm("Delete the card?");
+              if (r) {
+                deleteCard(id);
+              }
+            }}
+          />
+        )}
         <style jsx>{`
           .CardWrapper {
+            position: relative;
             border: 1px dashed #545454;
             min-width: 320px;
             max-width: 400px;

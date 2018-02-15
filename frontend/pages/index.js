@@ -7,14 +7,27 @@ import About from "../components/About";
 
 import withData from "../lib/withData";
 
-export default withData(() => (
-  <Layout>
-    <About />
-    <style jsx global>{`
-      body {
-        background: #252525;
-      }
-    `}</style>
-    <Cards />
-  </Layout>
-));
+class Index extends Component {
+  static async getInitialProps({ query }) {
+    return {
+      editing: query.editing
+    };
+  }
+  render() {
+    const { editing } = this.props;
+    return (
+      <Layout>
+        <About />
+        <style jsx global>{`
+          body {
+            background: #252525;
+          }
+        `}</style>
+
+        <Cards editing={editing} />
+      </Layout>
+    );
+  }
+}
+
+export default withData(Index);

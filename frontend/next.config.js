@@ -1,3 +1,5 @@
+const routes = require("./routes");
+
 module.exports = {
   exportPathMap: async () => {
     const { request } = require("graphql-request");
@@ -31,9 +33,9 @@ module.exports = {
     }, {});
 
     return {
-      "/": { page: "/" },
-      "/resume": { page: "/resume" },
-      ...pages
+      ...routes,
+      ...pages,
+      "/resume": { page: "/resume" }
     };
   }
 };

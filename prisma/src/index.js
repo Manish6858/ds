@@ -15,7 +15,19 @@ const engine = new Engine({
   dumpTraffic: true
 });
 
-engine.start();
+const rebuild = () => {
+  if (process.env.NODE_ENV === "production") {
+    return fetch(
+      "https://api.netlify.com/build_hooks/5a85c258fd0efa5a7290bd70",
+      {
+        method: "POST"
+      }
+    );
+    console.log("Build hook function called in production");
+  } else {
+    console.log("Build hook function called in development");
+  }
+};
 
 const resolvers = {
   Query: {

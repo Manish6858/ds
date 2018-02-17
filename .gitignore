@@ -4,3 +4,6 @@ node_modules/
 frontend/.next/
 .vscode
 out/
+
+pm2-dev.json
+pm2-prod.json

@@ -35,6 +35,7 @@ class Index extends Component {
             align-items: center;
             justify-content: center;
             color: #555;
+            font-size: 12px;
           }
           .poweredBy a,
           .poweredBy a:visited {

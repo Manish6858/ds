@@ -7,7 +7,6 @@ module.exports = ({ prisma, s3 }) => (req, res) => {
   let form = new multiparty.Form();
 
   form.on("part", async function(part) {
-    console.log(part.name);
     if (part.name !== "data") {
       return;
     }

@@ -9,14 +9,26 @@ type Card {
 
 type User {
   id: ID! @unique
-  slug: String @unique
+  slug: String! @unique
   name: String!
   intro: String!
   image: String
+}
+
+type Script {
+  id: ID! @unique
+  location: ScriptLocation!
+  slug: String! @unique
+  script: String!
 }
 
 enum CardType {
   LINK
   HTML
   LINK_WITH_HTML
+}
+
+enum ScriptLocation {
+  HEADER
+  FOOTER
 }

@@ -20,12 +20,27 @@ class Index extends Component {
       <Layout>
         <Scripts editing={editing} />
         <About />
+        <Cards editing={editing} />
+        <div className="poweredBy">
+          <a target="_blank" href="https://github.com/divyenduz/ds">
+            Powered by DS
+          </a>
+        </div>
         <style jsx global>{`
           body {
             background: #252525;
           }
+          .poweredBy {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+          }
+          .poweredBy a,
+          .poweredBy a:visited {
+            color: #555;
+          }
         `}</style>
-        <Cards editing={editing} />
       </Layout>
     );
   }

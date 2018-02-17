@@ -6,6 +6,14 @@ class Scripts extends Component {
   state = {
     new: {}
   };
+
+  componentDidMount() {
+    const { editing, data } = this.props;
+    if (editing) {
+      data.refetch();
+    }
+  }
+
   render() {
     const { editing, data, create, update, remove } = this.props;
     if (data.error) {

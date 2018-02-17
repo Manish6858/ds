@@ -9,6 +9,14 @@ class Cards extends Component {
   state = {
     newCard: {}
   };
+
+  componentDidMount() {
+    const { editing, data } = this.props;
+    if (editing) {
+      data.refetch();
+    }
+  }
+
   render() {
     const { editing, data, createCard, updateCard, deleteCard } = this.props;
     if (data.error) {

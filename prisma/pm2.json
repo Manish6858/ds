@@ -1,0 +1,9 @@
+{
+  "name": "ds",
+  "script": "src/index.js",
+  "instances": 1,
+  "env": {
+    "NODE_ENV": "production",
+    "JWT_SECRET": "very-secret-oh-my"
+  }
+}

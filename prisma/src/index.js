@@ -21,9 +21,7 @@ if (process.env.NODE_ENV === "production") {
 
 const rebuild = () => {
   // TODO: Reverse condition untill I make pm2.json to have NODE_ENV=production in prod
-  if (process.env.NODE_ENV === "development") {
-    console.log("Build hook function called in development");
-  } else {
+  if (process.env.NODE_ENV === "production") {
     console.log("Build hook function called in production");
     return fetch(
       "https://api.netlify.com/build_hooks/5a85c258fd0efa5a7290bd70",
@@ -31,6 +29,8 @@ const rebuild = () => {
         method: "POST"
       }
     );
+  } else {
+    console.log("Build hook function called in development");
   }
 };
 

@@ -19,7 +19,7 @@ class Index extends Component {
     return (
       <Layout>
         <Scripts editing={editing} />
-        <About />
+        <About editing={editing} />
         <Cards editing={editing} />
         <div className="poweredBy">
           <a target="_blank" href="https://github.com/divyenduz/ds">

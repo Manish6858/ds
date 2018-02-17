@@ -1,9 +1,10 @@
 import React, { Component } from "react";
-import { gql, graphql } from "react-apollo";
+import { gql, graphql, compose } from "react-apollo";
 
 class About extends Component {
   render() {
-    const { data } = this.props;
+    const { editing, data, update } = this.props;
+
     if (data.error) {
       console.log(data.error);
       return null;
@@ -14,14 +15,49 @@ class About extends Component {
 
     return (
       <div className="aboutWrapper">
-        <div className="headeLine">{data.user.name}</div>
-        <div className="aboutMe">{data.user.intro}</div>
+        <div
+          ref={el => {
+            this.nameEl = el;
+          }}
+          className="headerLine"
+          contentEditable={editing}
+        >
+          {data.user.name}
+        </div>
+        <div
+          ref={el => {
+            this.introEl = el;
+          }}
+          className="aboutMe"
+          contentEditable={editing}
+        >
+          {data.user.intro}
+        </div>
+        {editing && (
+          <button
+            onClick={() => {
+              const updateResponse = update({
+                variables: {
+                  name: this.nameEl.innerText,
+                  intro: this.introEl.innerText
+                }
+              });
+              if (updateResponse) {
+                data.refetch();
+              } else {
+                console.log("Update fail");
+              }
+            }}
+          >
+            Save Changes
+          </button>
+        )}
         <div className="imageWrapper">
           <img className="profilePic" alt="" src={data.user.image} />
         </div>
 
         <style jsx>{`
-          .headeLine {
+          .headerLine {
             text-align: center;
             font-family: "Open Sans";
             font-size: 72px;
@@ -58,7 +94,7 @@ class About extends Component {
   }
 }
 
-const user = gql`
+const ALL_QUERY = gql`
   query GetUserForHome {
     user(where: { slug: "divyenduz" }) {
       id
@@ -70,11 +106,41 @@ const user = gql`
   }
 `;
 
-export default graphql(user, {
-  options: {
-    variables: {}
-  },
-  props: ({ data }) => ({
-    data
+// const CREATE_MUTATION = gql``;
+
+const UPDATE_MUTATION = gql`
+  mutation UpdateUser($name: String!, $intro: String!) {
+    updateUser(
+      where: { slug: "divyenduz" }
+      data: { name: $name, intro: $intro }
+    ) {
+      id
+      slug
+      name
+      intro
+      image
+    }
+  }
+`;
+
+// const DELETE_MUTATION = gql``;
+
+export default compose(
+  graphql(ALL_QUERY, {
+    options: {
+      variables: {}
+    },
+    props: ({ data }) => ({
+      data
+    })
+  }),
+  // graphql(CREATE_MUTATION, {
+  //   name: "create"
+  // }),
+  graphql(UPDATE_MUTATION, {
+    name: "update"
   })
-})(About);
+  // graphql(DELETE_MUTATION, {
+  //   name: "remove"
+  // })
+)(About);

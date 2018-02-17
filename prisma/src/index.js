@@ -3,6 +3,8 @@ const { Prisma } = require("prisma-binding");
 const { Engine } = require("apollo-engine");
 const compression = require("compression");
 
+const { Query, Mutation } = require("./resolvers");
+
 let engine = null;
 if (process.env.NODE_ENV === "production") {
   engine = new Engine({
@@ -20,112 +22,12 @@ if (process.env.NODE_ENV === "production") {
   engine.start();
 }
 
-const rebuild = () => {
-  // TODO: Reverse condition untill I make pm2.json to have NODE_ENV=production in prod
-  if (process.env.NODE_ENV === "production") {
-    console.log("Build hook function called in production");
-    return fetch(
-      "https://api.netlify.com/build_hooks/5a85c258fd0efa5a7290bd70",
-      {
-        method: "POST"
-      }
-    );
-  } else {
-    console.log("Build hook function called in development");
-  }
-};
-
 const resolvers = {
   Query: {
-    cards(
-      parent,
-      { where, orderBy, skip, after, before, first, last },
-      ctx,
-      info
-    ) {
-      return ctx.db.query.cards(
-        {
-          where,
-          orderBy,
-          skip,
-          after,
-          before,
-          first,
-          last
-        },
-        info
-      );
-    },
-    user(parent, { where }, ctx, info) {
-      return ctx.db.query.user(
-        {
-          where
-        },
-        info
-      );
-    }
+    ...Query
   },
   Mutation: {
-    createCard(parent, { data }, ctx, info) {
-      const result = ctx.db.mutation.createCard(
-        {
-          data
-        },
-        info
-      );
-      rebuild();
-      return result;
-    },
-    updateCard(parent, { where, data }, ctx, info) {
-      const result = ctx.db.mutation.updateCard(
-        {
-          where,
-          data
-        },
-        info
-      );
-      rebuild();
-      return result;
-    },
-    deleteCard(parent, { where }, ctx, info) {
-      const result = ctx.db.mutation.deleteCard(
-        {
-          where
-        },
-        info
-      );
-      rebuild();
-      return result;
-    },
-
-    createUser(parent, { data }, ctx, info) {
-      const result = ctx.db.mutation.createUser({
-        data
-      });
-      rebuild();
-      return result;
-    },
-    updateUser(parent, { where, data }, ctx, info) {
-      const result = ctx.db.mutation.updateUser(
-        {
-          where,
-          data
-        },
-        info
-      );
-      rebuild();
-      return result;
-    },
-    deleteUser(parent, { where }, ctx, info) {
-      const result = ctx.db.mutation.deleteUser(
-        {
-          where
-        },
-        info
-      );
-      rebuild();
-      return result;
-    }
+    ...Mutation
   }
 };
 

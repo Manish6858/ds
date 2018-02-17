@@ -5,7 +5,7 @@ const compression = require("compression");
 const { S3 } = require("aws-sdk");
 const cors = require("cors");
 
-const fileApi = require("./Modules/fileAPI");
+const fileApi = require("./modules/fileAPI");
 
 const { Query, Mutation } = require("./resolvers");
 

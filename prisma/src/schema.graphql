@@ -12,15 +12,27 @@ type Query {
     last: Int
   ): [Card!]!
   user(where: UserWhereUniqueInput!): User
+  scripts(
+    where: ScriptWhereInput
+    orderBy: ScriptOrderByInput
+    skip: Int
+    after: String
+    before: String
+    first: Int
+    last: Int
+  ): [Script!]!
 }
 
 type Mutation {
   createCard(data: CardCreateInput!): Card!
   updateCard(data: CardUpdateInput!, where: CardWhereUniqueInput!): Card
+  deleteCard(where: CardWhereUniqueInput!): Card
 
   createUser(data: UserCreateInput!): User!
   updateUser(data: UserUpdateInput!, where: UserWhereUniqueInput!): User
-
-  deleteCard(where: CardWhereUniqueInput!): Card
   deleteUser(where: UserWhereUniqueInput!): User
+
+  createScript(data: ScriptCreateInput!): Script!
+  updateScript(data: ScriptUpdateInput!, where: ScriptWhereUniqueInput!): Script
+  deleteScript(where: ScriptWhereUniqueInput!): Script
 }

@@ -8,11 +8,17 @@
 
   -- HTML (soon)
 
-* Auth (Soon)
+* Auth (Ssshhhh...)
 
-* Environment management (Soon)
+* Environment management (Done-ish)
 
 * Remove harcoded stuff like my resume 😅 (Soon)
+
+* Edit profile/image (Done-ish)
+
+* Edit scripts on the page (Done-ish)
+
+* Make the code less UGLY (Wooa - I believe in art)
 
 ### Powered by
 

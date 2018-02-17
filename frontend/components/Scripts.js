@@ -13,7 +13,7 @@ class Scripts extends Component {
       return null;
     }
     if (data.loading) {
-      return "Loading...";
+      return null;
     }
     if (!editing) {
       // TODO: This means scripts won't work on admin panel
@@ -174,7 +174,6 @@ class Scripts extends Component {
             x
           </button>
         </Modal>
-        <style jsx>{``}</style>
       </div>
     );
   }

@@ -3,8 +3,9 @@ const { Prisma } = require("prisma-binding");
 const { Engine } = require("apollo-engine");
 const compression = require("compression");
 
+let engine = null;
 if (process.env.NODE_ENV === "production") {
-  const engine = new Engine({
+  engine = new Engine({
     engineConfig: {
       apiKey: "service:ds-self:UIbWZlrO1TxFloGPmjyFvw",
       logging: {
@@ -145,7 +146,9 @@ const server = new GraphQLServer({
 
 if (process.env.NODE_ENV === "production") {
   server.express.use(compression());
-  server.express.use(engine.expressMiddleware());
+  if (engine) {
+    server.express.use(engine.expressMiddleware());
+  }
 }
 
 server.start(

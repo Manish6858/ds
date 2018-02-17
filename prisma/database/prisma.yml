@@ -3,7 +3,7 @@ service: ds
 
 stage: dev
 
-secret: very-secret-going-to-version-control-but-i-know-it-and-dont-care
+secret: ${env:PRISMA_SECRET}
 
 datamodel: datamodel.graphql
 

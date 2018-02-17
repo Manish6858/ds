@@ -6,6 +6,10 @@
     "NODE_ENV": "production",
     "JWT_SECRET": "very-secret-oh-my",
     "AWS_ACCESS_KEY_ID": "very-secret-oh-my",
-    "AWS_SECRET_KEY_ID": "very-secret-oh-my"
+    "AWS_SECRET_KEY_ID": "very-secret-oh-my",
+    "AWS_S3_BUCKET_NAME": "such-bucket-much-wow",
+    "APOLLO_ENGINE_API_KEY": "very-secret-oh-my",
+    "PRISMA_ENDPOINT": "such-beautiful-endpoint",
+    "PRISMA_SECRET": "very-secret-oh-my"
   }
 }

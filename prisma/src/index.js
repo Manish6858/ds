@@ -13,7 +13,7 @@ const s3client = new S3({
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
   secretAccessKey: process.env.AWS_SECRET_KEY_ID,
   params: {
-    Bucket: "divyendusingh"
+    Bucket: process.env.AWS_S3_BUCKET_NAME
   }
 });
 
@@ -21,7 +21,7 @@ let engine = null;
 if (process.env.NODE_ENV === "production") {
   engine = new Engine({
     engineConfig: {
-      apiKey: "service:ds-self:UIbWZlrO1TxFloGPmjyFvw",
+      apiKey: process.env.APOLLO_ENGINE_API_KEY,
       logging: {
         level: "DEBUG"
       }
@@ -46,8 +46,8 @@ const resolvers = {
 const getPrismaInstance = () => {
   return new Prisma({
     typeDefs: "src/generated/prisma.graphql",
-    endpoint: "http://localhost:4466/ds/dev", // the endpoint of the Prisma DB service
-    secret: "very-secret-going-to-version-control-but-i-know-it-and-dont-care", // specified in database/prisma.yml
+    endpoint: process.env.PRISMA_ENDPOINT, // the endpoint of the Prisma DB service
+    secret: process.env.PRISMA_SECRET, // specified in database/prisma.yml
     debug: false // log all GraphQL queryies & mutations
   });
 };

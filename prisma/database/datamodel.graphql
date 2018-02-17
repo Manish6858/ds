@@ -22,6 +22,15 @@ type Script {
   script: String!
 }
 
+type File {
+  id: ID! @unique
+  name: String!
+  size: Int!
+  secret: String! @unique
+  contentType: String!
+  url: String! @unique
+}
+
 enum CardType {
   LINK
   HTML

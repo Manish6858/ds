@@ -4,6 +4,8 @@
   "instances": 1,
   "env": {
     "NODE_ENV": "production",
-    "JWT_SECRET": "very-secret-oh-my"
+    "JWT_SECRET": "very-secret-oh-my",
+    "AWS_ACCESS_KEY_ID": "very-secret-oh-my",
+    "AWS_SECRET_KEY_ID": "very-secret-oh-my"
   }
 }

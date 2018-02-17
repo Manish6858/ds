@@ -1,7 +1,12 @@
 import React, { Component } from "react";
 import { gql, graphql, compose } from "react-apollo";
 
+import Dropzone from "react-dropzone";
+
 class About extends Component {
+  state = {
+    image: null
+  };
   render() {
     const { editing, data, update } = this.props;
 
@@ -33,13 +38,51 @@ class About extends Component {
         >
           {data.user.intro}
         </div>
+        <div className="imageWrapper">
+          <Dropzone
+            disabled={!editing}
+            style={{ border: 0 }}
+            multiple={false}
+            accept="image/*"
+            onDrop={acceptedFiles => {
+              acceptedFiles.forEach(file => {
+                var formData = new FormData();
+                formData.append("data", file);
+                const response = fetch("http://localhost:4000/upload", {
+                  method: "POST",
+                  body: formData
+                });
+                console.log(
+                  response
+                    .then(response => {
+                      return response.json();
+                    })
+                    .then(response => {
+                      console.log(response.url);
+                      this.setState({
+                        image: response.url
+                      });
+                    })
+                );
+              });
+            }}
+          >
+            <img
+              className="profilePic"
+              alt=""
+              src={this.state.image || data.user.image}
+            />
+          </Dropzone>
+        </div>
+
         {editing && (
           <button
             onClick={() => {
               const updateResponse = update({
                 variables: {
                   name: this.nameEl.innerText,
-                  intro: this.introEl.innerText
+                  intro: this.introEl.innerText,
+                  image: this.state.image || data.user.image
                 }
               });
               if (updateResponse) {
@@ -52,9 +95,6 @@ class About extends Component {
             Save Changes
           </button>
         )}
-        <div className="imageWrapper">
-          <img className="profilePic" alt="" src={data.user.image} />
-        </div>
 
         <style jsx>{`
           .headerLine {
@@ -109,10 +149,10 @@ const ALL_QUERY = gql`
 // const CREATE_MUTATION = gql``;
 
 const UPDATE_MUTATION = gql`
-  mutation UpdateUser($name: String!, $intro: String!) {
+  mutation UpdateUser($name: String!, $intro: String!, $image: String!) {
     updateUser(
       where: { slug: "divyenduz" }
-      data: { name: $name, intro: $intro }
+      data: { name: $name, intro: $intro, image: $image }
     ) {
       id
       slug

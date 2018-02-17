@@ -2,8 +2,20 @@ const { GraphQLServer } = require("graphql-yoga");
 const { Prisma } = require("prisma-binding");
 const { Engine } = require("apollo-engine");
 const compression = require("compression");
+const { S3 } = require("aws-sdk");
+const cors = require("cors");
+
+const fileApi = require("./Modules/fileAPI");
 
 const { Query, Mutation } = require("./resolvers");
+
+const s3client = new S3({
+  accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+  secretAccessKey: process.env.AWS_SECRET_KEY_ID,
+  params: {
+    Bucket: "divyendusingh"
+  }
+});
 
 let engine = null;
 if (process.env.NODE_ENV === "production") {
@@ -31,20 +43,33 @@ const resolvers = {
   }
 };
 
+const getPrismaInstance = () => {
+  return new Prisma({
+    typeDefs: "src/generated/prisma.graphql",
+    endpoint: "http://localhost:4466/ds/dev", // the endpoint of the Prisma DB service
+    secret: "very-secret-going-to-version-control-but-i-know-it-and-dont-care", // specified in database/prisma.yml
+    debug: false // log all GraphQL queryies & mutations
+  });
+};
+
 const server = new GraphQLServer({
   typeDefs: "./src/schema.graphql",
   resolvers,
   context: req => ({
     ...req,
-    db: new Prisma({
-      typeDefs: "src/generated/prisma.graphql",
-      endpoint: "http://localhost:4466/ds/dev", // the endpoint of the Prisma DB service
-      secret:
-        "very-secret-going-to-version-control-but-i-know-it-and-dont-care", // specified in database/prisma.yml
-      debug: false // log all GraphQL queryies & mutations
-    })
+    db: getPrismaInstance()
   })
 });
+
+server.express.use(cors());
+
+server.express.post(
+  "/upload",
+  fileApi({
+    s3: s3client,
+    prisma: getPrismaInstance()
+  })
+);
 
 if (process.env.NODE_ENV === "production") {
   server.express.use(compression());

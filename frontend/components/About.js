@@ -48,7 +48,7 @@ class About extends Component {
               acceptedFiles.forEach(file => {
                 var formData = new FormData();
                 formData.append("data", file);
-                const response = fetch("http://localhost:4000/upload", {
+                const response = fetch("https://api.divyendusingh.com/upload", {
                   method: "POST",
                   body: formData
                 });

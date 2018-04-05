@@ -20,6 +20,8 @@
 
 * Make the code less UGLY (Wooa - I believe in art)
 
+* Subscriptions - #RealTime (Soon)
+
 ### Powered by
 
 * Graphcool (Prisma)

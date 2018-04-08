@@ -46,6 +46,11 @@ class About extends Component {
             accept="image/*"
             onDrop={acceptedFiles => {
               acceptedFiles.forEach(file => {
+
+		this.setState({
+			image: file.preview
+		})
+
                 var formData = new FormData();
                 formData.append("data", file);
                 const response = fetch("https://api.divyendusingh.com/upload", {

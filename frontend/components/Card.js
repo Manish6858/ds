@@ -30,7 +30,7 @@ export default class extends Component {
           <Button
             style={{
               position: "absolute",
-              top: 0,
+              top: "4px",
               right: 0,
               background: "none",
               border: "none",

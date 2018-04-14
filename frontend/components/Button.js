@@ -2,10 +2,19 @@ import React, { Component } from "react";
 
 export default class extends Component {
   render() {
-    const { title, style, onClick } = this.props;
+    const { children, style, onClick } = this.props;
     return (
-      <button onClick={onClick} style={style}>
-        {title}
+      <button onClick={onClick} style={style} className="btn">
+        {children}
+        <style jsx>{`
+          .btn {
+            display: block;
+            margin: 5px auto;
+            background: transparent;
+            color: white;
+            padding: 7px;
+          }
+        `}</style>
       </button>
     );
   }

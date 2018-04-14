@@ -28,7 +28,6 @@ export default class extends Component {
         )}
         {editing && (
           <Button
-            title="x"
             style={{
               position: "absolute",
               top: 0,
@@ -44,7 +43,9 @@ export default class extends Component {
                 deleteCard(id);
               }
             }}
-          />
+          >
+            x
+          </Button>
         )}
         <style jsx>{`
           .CardWrapper {

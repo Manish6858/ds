@@ -4,6 +4,8 @@ import cx from "classnames";
 
 import Dropzone from "react-dropzone";
 
+import Button from "./Button";
+
 class About extends Component {
   state = {
     image: null
@@ -81,7 +83,7 @@ class About extends Component {
         </div>
 
         {editing && (
-          <button
+          <Button
             onClick={() => {
               const updateResponse = update({
                 variables: {
@@ -98,7 +100,7 @@ class About extends Component {
             }}
           >
             Save Changes
-          </button>
+          </Button>
         )}
 
         <style jsx>{`
@@ -134,7 +136,7 @@ class About extends Component {
             alignitems: center;
           }
           .editing {
-            border: 1px dotted #545454;
+            border: 1px dashed #545454;
           }
         `}</style>
       </div>

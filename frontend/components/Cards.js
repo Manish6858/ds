@@ -10,13 +10,6 @@ class Cards extends Component {
     newCard: {}
   };
 
-  componentDidMount() {
-    const { editing, data } = this.props;
-    if (editing) {
-      data.refetch();
-    }
-  }
-
   render() {
     const { editing, data, createCard, updateCard, deleteCard } = this.props;
     if (data.error) {
@@ -73,11 +66,7 @@ class Cards extends Component {
                     id: id
                   }
                 });
-                if (deleteCardResponse) {
-                  data.refetch();
-                } else {
-                  console.log("Delete fail");
-                }
+                console.log(deleteCardResponse);
               }}
             />
           </div>
@@ -163,10 +152,7 @@ class Cards extends Component {
               });
               console.log(createCardResponse);
               if (createCardResponse) {
-                data.refetch();
                 this.setState({ newCard: {} });
-              } else {
-                console.log("Create fail");
               }
             }}
           >
@@ -290,12 +276,30 @@ export default compose(
     })
   }),
   graphql(CREATE_CARD_MUTATION, {
-    name: "createCard"
+    name: "createCard",
+    refetchQueries: [
+      {
+        query: ALL_CARDS_QUERY,
+        variables: {}
+      }
+    ]
   }),
   graphql(UPDATE_CARD_MUTATION, {
-    name: "updateCard"
+    name: "updateCard",
+    refetchQueries: [
+      {
+        query: ALL_CARDS_QUERY,
+        variables: {}
+      }
+    ]
   }),
   graphql(DELETE_CARD_MUTATION, {
-    name: "deleteCard"
+    name: "deleteCard",
+    refetchQueries: [
+      {
+        query: ALL_CARDS_QUERY,
+        variables: {}
+      }
+    ]
   })
 )(Cards);

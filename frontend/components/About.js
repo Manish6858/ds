@@ -178,11 +178,13 @@ export default compose(
   }),
   graphql(UPDATE_MUTATION, {
     name: "update",
-    refetchQueries: [
-      {
-        query: ALL_QUERY,
-        variables: {}
-      }
-    ]
+    options: {
+      refetchQueries: [
+        {
+          query: ALL_QUERY,
+          variables: {}
+        }
+      ]
+    }
   })
 )(About);

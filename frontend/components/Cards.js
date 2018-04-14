@@ -285,29 +285,35 @@ export default compose(
   }),
   graphql(CREATE_CARD_MUTATION, {
     name: "createCard",
-    refetchQueries: [
-      {
-        query: ALL_CARDS_QUERY,
-        variables: {}
-      }
-    ]
+    options: {
+      refetchQueries: [
+        {
+          query: ALL_CARDS_QUERY,
+          variables: {}
+        }
+      ]
+    }
   }),
   graphql(UPDATE_CARD_MUTATION, {
     name: "updateCard",
-    refetchQueries: [
-      {
-        query: ALL_CARDS_QUERY,
-        variables: {}
-      }
-    ]
+    options: {
+      refetchQueries: [
+        {
+          query: ALL_CARDS_QUERY,
+          variables: {}
+        }
+      ]
+    }
   }),
   graphql(DELETE_CARD_MUTATION, {
     name: "deleteCard",
-    refetchQueries: [
-      {
-        query: ALL_CARDS_QUERY,
-        variables: {}
-      }
-    ]
+    options: {
+      refetchQueries: [
+        {
+          query: ALL_CARDS_QUERY,
+          variables: {}
+        }
+      ]
+    }
   })
 )(Cards);

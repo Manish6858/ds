@@ -62,13 +62,16 @@ class Cards extends Component {
                     };
                   });
                 }}
-                deleteCard={async id => {
-                  const deleteCardResponse = await deleteCard({
-                    variables: {
-                      id: id
-                    }
-                  });
-                  console.log(deleteCardResponse);
+                onCrossClick={async () => {
+                  const r = confirm("Delete the card?");
+                  if (r) {
+                    const deleteCardResponse = await deleteCard({
+                      variables: {
+                        id: card.id
+                      }
+                    });
+                    console.log(deleteCardResponse);
+                  }
                 }}
               />
             </div>

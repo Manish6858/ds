@@ -13,6 +13,10 @@ export default class extends Component {
             background: transparent;
             color: white;
             padding: 7px;
+            cursor: pointer;
+          }
+          .btn:focus {
+            outline: none;
           }
         `}</style>
       </button>

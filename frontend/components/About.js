@@ -84,19 +84,15 @@ class About extends Component {
 
         {editing && (
           <Button
-            onClick={() => {
-              const updateResponse = update({
+            onClick={async () => {
+              const updateResponse = await update({
                 variables: {
                   name: this.nameEl.innerText,
                   intro: this.introEl.innerText,
                   image: this.state.image || data.user.image
                 }
               });
-              if (updateResponse) {
-                data.refetch();
-              } else {
-                console.log("Update fail");
-              }
+              console.log(updateResponse);
             }}
           >
             Save Changes
@@ -156,8 +152,6 @@ const ALL_QUERY = gql`
   }
 `;
 
-// const CREATE_MUTATION = gql``;
-
 const UPDATE_MUTATION = gql`
   mutation UpdateUser($name: String!, $intro: String!, $image: String!) {
     updateUser(
@@ -173,8 +167,6 @@ const UPDATE_MUTATION = gql`
   }
 `;
 
-// const DELETE_MUTATION = gql``;
-
 export default compose(
   graphql(ALL_QUERY, {
     options: {
@@ -184,13 +176,13 @@ export default compose(
       data
     })
   }),
-  // graphql(CREATE_MUTATION, {
-  //   name: "create"
-  // }),
   graphql(UPDATE_MUTATION, {
-    name: "update"
+    name: "update",
+    refetchQueries: [
+      {
+        query: ALL_QUERY,
+        variables: {}
+      }
+    ]
   })
-  // graphql(DELETE_MUTATION, {
-  //   name: "remove"
-  // })
 )(About);

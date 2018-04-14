@@ -5,7 +5,7 @@ import Button from "./Button";
 
 export default class extends Component {
   render() {
-    const { card, editing, onClick, deleteCard } = this.props;
+    const { card, editing, onClick, onCrossClick } = this.props;
     const { id, slug, title, link, html } = card;
     return (
       <div className={cx("CardWrapper", { ["editing"]: editing })}>
@@ -37,12 +37,7 @@ export default class extends Component {
               color: "white",
               fontSize: 20
             }}
-            onClick={() => {
-              const r = confirm("Delete the card?");
-              if (r) {
-                deleteCard(id);
-              }
-            }}
+            onClick={onCrossClick}
           >
             x
           </Button>
@@ -66,6 +61,9 @@ export default class extends Component {
             font-size: 16px;
             color: #a6925a;
             transition: 120ms ease-in background;
+          }
+          .LinkWrapper:focus {
+            outline: none;
           }
           .LinkWrapper:hover {
             background: #222;

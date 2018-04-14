@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { gql, graphql, compose } from "react-apollo";
 import Modal from "react-modal";
+import cx from "classnames";
 
 import Card from "./Card";
 import Button from "./Button";
@@ -20,9 +21,9 @@ class Cards extends Component {
       return "Loading...";
     }
     return (
-      <div className="CardsLayoutWrapper">
+      <div className={cx({ ["editing"]: editing })}>
         {editing && (
-          <button
+          <Button
             onClick={() => {
               this.setState(prevState => {
                 return {
@@ -42,130 +43,132 @@ class Cards extends Component {
             }}
           >
             + Add New
-          </button>
+          </Button>
         )}
-        {data.cards.map(card => (
-          <div key={card.slug} className="CardsChildWrapper">
-            <Card
-              card={card}
-              editing={editing}
-              onClick={card => {
-                console.log(card);
+        <div className="CardsLayoutWrapper">
+          {data.cards.map(card => (
+            <div key={card.slug} className="CardsChildWrapper">
+              <Card
+                card={card}
+                editing={editing}
+                onClick={card => {
+                  console.log(card);
+                  this.setState(prevState => {
+                    return {
+                      newCard: {
+                        ...prevState.newCard,
+                        ...card
+                      }
+                    };
+                  });
+                }}
+                deleteCard={async id => {
+                  const deleteCardResponse = await deleteCard({
+                    variables: {
+                      id: id
+                    }
+                  });
+                  console.log(deleteCardResponse);
+                }}
+              />
+            </div>
+          ))}
+          <Modal
+            isOpen={
+              editing &&
+              typeof this.state.newCard.id === "string" &&
+              this.state.newCard.type === "LINK"
+            }
+          >
+            Title:{" "}
+            <input
+              type="text"
+              value={this.state.newCard.title}
+              onChange={e => {
+                e.persist();
                 this.setState(prevState => {
                   return {
                     newCard: {
                       ...prevState.newCard,
-                      ...card
+                      ...{
+                        title: e.target.value
+                      }
                     }
                   };
                 });
               }}
-              deleteCard={async id => {
-                const deleteCardResponse = await deleteCard({
-                  variables: {
-                    id: id
-                  }
+            />
+            Slug:{" "}
+            <input
+              type="text"
+              value={this.state.newCard.slug}
+              onChange={e => {
+                e.persist();
+                this.setState(prevState => {
+                  return {
+                    newCard: {
+                      ...prevState.newCard,
+                      ...{
+                        slug: e.target.value
+                      }
+                    }
+                  };
                 });
-                console.log(deleteCardResponse);
               }}
             />
-          </div>
-        ))}
-        <Modal
-          isOpen={
-            editing &&
-            typeof this.state.newCard.id === "string" &&
-            this.state.newCard.type === "LINK"
-          }
-        >
-          Title:{" "}
-          <input
-            type="text"
-            value={this.state.newCard.title}
-            onChange={e => {
-              e.persist();
-              this.setState(prevState => {
-                return {
-                  newCard: {
-                    ...prevState.newCard,
-                    ...{
-                      title: e.target.value
+            Link:{" "}
+            <input
+              type="text"
+              value={this.state.newCard.link}
+              onChange={e => {
+                e.persist();
+                this.setState(prevState => {
+                  return {
+                    newCard: {
+                      ...prevState.newCard,
+                      ...{
+                        link: e.target.value
+                      }
                     }
-                  }
-                };
-              });
-            }}
-          />
-          Slug:{" "}
-          <input
-            type="text"
-            value={this.state.newCard.slug}
-            onChange={e => {
-              e.persist();
-              this.setState(prevState => {
-                return {
-                  newCard: {
-                    ...prevState.newCard,
-                    ...{
-                      slug: e.target.value
-                    }
-                  }
-                };
-              });
-            }}
-          />
-          Link:{" "}
-          <input
-            type="text"
-            value={this.state.newCard.link}
-            onChange={e => {
-              e.persist();
-              this.setState(prevState => {
-                return {
-                  newCard: {
-                    ...prevState.newCard,
-                    ...{
-                      link: e.target.value
-                    }
-                  }
-                };
-              });
-            }}
-          />
-          <button
-            disabled={
-              typeof this.state.newCard.id === "string" &&
-              this.state.newCard.title &&
-              this.state.newCard.slug &&
-              this.state.newCard.link &&
-              this.state.newCard.type
-                ? false
-                : true
-            }
-            onClick={async () => {
-              const mutationFunction =
-                this.state.newCard.id === "new" ? createCard : updateCard;
-              const createCardResponse = await mutationFunction({
-                variables: {
-                  ...this.state.newCard
-                }
-              });
-              console.log(createCardResponse);
-              if (createCardResponse) {
-                this.setState({ newCard: {} });
+                  };
+                });
+              }}
+            />
+            <button
+              disabled={
+                typeof this.state.newCard.id === "string" &&
+                this.state.newCard.title &&
+                this.state.newCard.slug &&
+                this.state.newCard.link &&
+                this.state.newCard.type
+                  ? false
+                  : true
               }
-            }}
-          >
-            {this.state.newCard.id === "new" ? "Create" : "Edit"}
-          </button>
-          <button
-            onClick={() => {
-              this.setState({ newCard: {} });
-            }}
-          >
-            x
-          </button>
-        </Modal>
+              onClick={async () => {
+                const mutationFunction =
+                  this.state.newCard.id === "new" ? createCard : updateCard;
+                const createCardResponse = await mutationFunction({
+                  variables: {
+                    ...this.state.newCard
+                  }
+                });
+                console.log(createCardResponse);
+                if (createCardResponse) {
+                  this.setState({ newCard: {} });
+                }
+              }}
+            >
+              {this.state.newCard.id === "new" ? "Create" : "Edit"}
+            </button>
+            <button
+              onClick={() => {
+                this.setState({ newCard: {} });
+              }}
+            >
+              x
+            </button>
+          </Modal>
+        </div>
         <style jsx>{`
           .CardsLayoutWrapper {
             display: flex;
@@ -173,10 +176,12 @@ class Cards extends Component {
             flex-wrap: wrap;
             max-width: 60%;
             margin: 0 auto;
-            padding: 40px;
           }
           .CardsChildWrapper {
             margin: 10px;
+          }
+          .editing {
+            border: 1px dashed #545454;
           }
         `}</style>
       </div>

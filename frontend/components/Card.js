@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import cx from "classnames";
 
 import Button from "./Button";
 
@@ -7,7 +8,7 @@ export default class extends Component {
     const { card, editing, onClick, deleteCard } = this.props;
     const { id, slug, title, link, html } = card;
     return (
-      <div className="CardWrapper">
+      <div className={cx("CardWrapper", { ["editing"]: editing })}>
         {!editing && (
           <a href={`/profile/${slug}`} target="_self" className="LinkWrapper">
             {title}
@@ -48,9 +49,12 @@ export default class extends Component {
         <style jsx>{`
           .CardWrapper {
             position: relative;
-            border: 1px dashed #545454;
+            border: 1px solid #545454;
             min-width: 320px;
             max-width: 400px;
+          }
+          .editing {
+            border: 1px dashed #545454;
           }
           .LinkWrapper {
             display: flex;

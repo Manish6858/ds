@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { gql, graphql, compose } from "react-apollo";
+import cx from "classnames";
 
 import Dropzone from "react-dropzone";
 
@@ -19,7 +20,7 @@ class About extends Component {
     }
 
     return (
-      <div className="aboutWrapper">
+      <div className={cx("aboutWrapper", { ["editing"]: editing })}>
         <div
           ref={el => {
             this.nameEl = el;
@@ -46,10 +47,9 @@ class About extends Component {
             accept="image/*"
             onDrop={acceptedFiles => {
               acceptedFiles.forEach(file => {
-
-		this.setState({
-			image: file.preview
-		})
+                this.setState({
+                  image: file.preview
+                });
 
                 var formData = new FormData();
                 formData.append("data", file);
@@ -132,6 +132,9 @@ class About extends Component {
             display: flex;
             justify-content: center;
             alignitems: center;
+          }
+          .editing {
+            border: 1px dotted #545454;
           }
         `}</style>
       </div>

@@ -2,9 +2,11 @@ import React, { Component } from "react";
 import { gql, graphql, compose } from "react-apollo";
 import Modal from "react-modal";
 import cx from "classnames";
+import linkState from "linkstate";
 
 import Card from "./Card";
 import Button from "./Button";
+import Input from "./elements/Input";
 
 class Cards extends Component {
   state = {
@@ -32,10 +34,10 @@ class Cards extends Component {
                     ...{
                       id: "new",
                       type: "LINK",
-                      title: null,
-                      slug: null,
-                      link: null,
-                      html: null
+                      title: "",
+                      slug: "",
+                      link: "",
+                      html: ""
                     }
                   }
                 };
@@ -52,7 +54,6 @@ class Cards extends Component {
                 card={card}
                 editing={editing}
                 onClick={card => {
-                  console.log(card);
                   this.setState(prevState => {
                     return {
                       newCard: {
@@ -77,99 +78,85 @@ class Cards extends Component {
             </div>
           ))}
           <Modal
+            style={{
+              content: {
+                width: "50%",
+                top: "50%",
+                left: "50%",
+                right: "auto",
+                bottom: "auto",
+                marginRight: "-50%",
+                transform: "translate(-50%, -50%)"
+              }
+            }}
+            shouldCloseOnOverlayClick={true}
+            onRequestClose={() => {
+              this.setState({ newCard: {} });
+            }}
             isOpen={
               editing &&
               typeof this.state.newCard.id === "string" &&
               this.state.newCard.type === "LINK"
             }
           >
-            Title:{" "}
-            <input
+            <Input
+              label="Title:"
               type="text"
               value={this.state.newCard.title}
-              onChange={e => {
-                e.persist();
-                this.setState(prevState => {
-                  return {
-                    newCard: {
-                      ...prevState.newCard,
-                      ...{
-                        title: e.target.value
-                      }
-                    }
-                  };
-                });
-              }}
+              onChange={linkState(this, "newCard.title")}
             />
-            Slug:{" "}
-            <input
+
+            <Input
+              label="Slug:"
               type="text"
               value={this.state.newCard.slug}
-              onChange={e => {
-                e.persist();
-                this.setState(prevState => {
-                  return {
-                    newCard: {
-                      ...prevState.newCard,
-                      ...{
-                        slug: e.target.value
-                      }
-                    }
-                  };
-                });
-              }}
+              onChange={linkState(this, "newCard.slug")}
             />
-            Link:{" "}
-            <input
+
+            <Input
+              label="Link:"
               type="text"
               value={this.state.newCard.link}
-              onChange={e => {
-                e.persist();
-                this.setState(prevState => {
-                  return {
-                    newCard: {
-                      ...prevState.newCard,
-                      ...{
-                        link: e.target.value
-                      }
-                    }
-                  };
-                });
-              }}
+              onChange={linkState(this, "newCard.link")}
             />
-            <button
-              disabled={
-                typeof this.state.newCard.id === "string" &&
-                this.state.newCard.title &&
-                this.state.newCard.slug &&
-                this.state.newCard.link &&
-                this.state.newCard.type
-                  ? false
-                  : true
-              }
-              onClick={async () => {
-                const mutationFunction =
-                  this.state.newCard.id === "new" ? createCard : updateCard;
-                const createCardResponse = await mutationFunction({
-                  variables: {
-                    ...this.state.newCard
-                  }
-                });
-                console.log(createCardResponse);
-                if (createCardResponse) {
-                  this.setState({ newCard: {} });
+
+            <div style={{ display: "flex" }}>
+              <Button
+                style={{ color: "black" }}
+                disabled={
+                  typeof this.state.newCard.id === "string" &&
+                  this.state.newCard.title &&
+                  this.state.newCard.slug &&
+                  this.state.newCard.link &&
+                  this.state.newCard.type
+                    ? false
+                    : true
                 }
-              }}
-            >
-              {this.state.newCard.id === "new" ? "Create" : "Edit"}
-            </button>
-            <button
-              onClick={() => {
-                this.setState({ newCard: {} });
-              }}
-            >
-              x
-            </button>
+                onClick={async () => {
+                  const mutationFunction =
+                    this.state.newCard.id === "new" ? createCard : updateCard;
+                  const createCardResponse = await mutationFunction({
+                    variables: {
+                      ...this.state.newCard
+                    }
+                  });
+                  console.log(createCardResponse);
+                  if (createCardResponse) {
+                    this.setState({ newCard: {} });
+                  }
+                }}
+              >
+                {this.state.newCard.id === "new" ? "Create" : "Edit"}
+              </Button>
+              <Button
+                style={{ color: "black" }}
+                onClick={() => {
+                  this.setState({ newCard: {} });
+                }}
+              >
+                x
+              </Button>
+            </div>
           </Modal>
         </div>
         <style jsx>{`

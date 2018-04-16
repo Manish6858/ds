@@ -10,7 +10,7 @@ class Input extends Component {
           className="input"
           type={type}
           value={value}
-          onChange={{ onChange }}
+          onChange={onChange}
         />
         <style jsx>{`
           .label {

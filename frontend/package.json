@@ -19,8 +19,8 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "3.2.12",
-    "@storybook/addon-links": "3.2.12",
-    "@storybook/react": "3.2.12"
+    "@storybook/addon-actions": "3.4.3",
+    "@storybook/addon-links": "3.4.3",
+    "@storybook/react": "3.4.3"
   }
 }

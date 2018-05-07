@@ -1,7 +1,4 @@
-# the name for the service (will be part of the service's HTTP endpoint)
-service: ds
-
-stage: dev
+endpoint: http://localhost:4466/ds/dev
 
 secret: ${env:PRISMA_SECRET}
 
@@ -9,5 +6,3 @@ datamodel: datamodel.graphql
 
 seed:
   import: seed.graphql
-
-cluster: local

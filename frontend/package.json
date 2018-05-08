@@ -9,7 +9,7 @@
     "react-apollo": "1.4.16",
     "react-dom": "16.2.0",
     "react-dropzone": "4.2.8",
-    "react-modal": "3.2.1",
+    "react-modal": "3.4.4",
     "url": "0.11.0"
   },
   "scripts": {

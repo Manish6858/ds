@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "webpack": "^4.8.1",
     "classnames": "2.2.5",
     "graphql-request": "1.4.0",
     "linkstate": "1.1.1",

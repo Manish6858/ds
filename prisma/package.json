@@ -8,7 +8,7 @@
     "prisma": "prisma"
   },
   "dependencies": {
-    "apollo-engine": "0.8.10",
+    "apollo-engine": "1.1.1",
     "aws-sdk": "2.235.1",
     "body-parser": "1.18.2",
     "compression": "1.7.2",

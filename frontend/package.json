@@ -2,7 +2,7 @@
   "dependencies": {
     "webpack": "4.8.1",
     "classnames": "2.2.5",
-    "graphql-request": "1.4.0",
+    "graphql-request": "1.6.0",
     "linkstate": "1.1.1",
     "next": "4.2.3",
     "react": "16.2.0",

@@ -1,6 +1,6 @@
 {
   "dependencies": {
-    "webpack": "^4.8.1",
+    "webpack": "4.8.1",
     "classnames": "2.2.5",
     "graphql-request": "1.4.0",
     "linkstate": "1.1.1",
@@ -23,6 +23,6 @@
     "@storybook/addon-actions": "3.4.3",
     "@storybook/addon-links": "3.4.3",
     "@storybook/react": "3.4.3",
-    "webpack": "^4.8.1"
+    "webpack": "4.8.1"
   }
 }

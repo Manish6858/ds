@@ -1,15 +1,15 @@
 {
   "dependencies": {
-    "classnames": "^2.2.5",
-    "graphql-request": "^1.4.0",
-    "linkstate": "^1.1.1",
-    "next": "^4.2.3",
-    "react": "^16.2.0",
-    "react-apollo": "^1.4.15",
-    "react-dom": "^16.2.0",
-    "react-dropzone": "^4.2.8",
-    "react-modal": "^3.1.13",
-    "url": "^0.11.0"
+    "classnames": "2.2.5",
+    "graphql-request": "1.4.0",
+    "linkstate": "1.1.1",
+    "next": "4.2.3",
+    "react": "16.2.0",
+    "react-apollo": "1.4.16",
+    "react-dom": "16.2.0",
+    "react-dropzone": "4.2.8",
+    "react-modal": "3.2.1",
+    "url": "0.11.0"
   },
   "scripts": {
     "dev": "node server.js",
@@ -19,8 +19,8 @@
     "build-storybook": "build-storybook"
   },
   "devDependencies": {
-    "@storybook/addon-actions": "^3.2.12",
-    "@storybook/addon-links": "^3.2.12",
-    "@storybook/react": "^3.2.12"
+    "@storybook/addon-actions": "3.4.3",
+    "@storybook/addon-links": "3.4.3",
+    "@storybook/react": "3.4.3"
   }
 }

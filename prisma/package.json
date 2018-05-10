@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "apollo-engine": "1.1.1",
-    "aws-sdk": "2.235.1",
+    "aws-sdk": "2.236.1",
     "body-parser": "1.18.2",
     "compression": "1.7.2",
     "cors": "2.8.4",
